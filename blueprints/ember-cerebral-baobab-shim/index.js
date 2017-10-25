@@ -9,7 +9,12 @@ module.exports = {
       return new Promise(function(resolve, reject){
         const download = require('download-git-repo');
         download('cerebral/cerebral', 'cerebral_src', function (err) {
-          console.log(err ? 'Error' : 'Success')
+          console.log(err ? 'Error' : 'Success');
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
         })
       });
     }).then(() => {
