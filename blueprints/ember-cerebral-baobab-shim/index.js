@@ -12,7 +12,14 @@ module.exports = {
           console.log(err ? 'Error' : 'Success')
         })
       });
-    });
+    }).then(() => {
+      return this.addAddonsToProject({
+        packages: [
+          {name: 'ember-cerebral-shim', target: '*'},
+          {name: 'ember-baobab-shim', target: '*'}
+        ]
+      })
+    })
       // .then(() => {
       //   return this.addAddonsToProject({
       //     packages: [
