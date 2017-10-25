@@ -3,6 +3,8 @@
 # compiled output
 /dist
 /tmp
+/cerebral_src
+/:
 
 # dependencies
 /node_modules

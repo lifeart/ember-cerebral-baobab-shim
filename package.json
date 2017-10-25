@@ -18,7 +18,9 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@cerebral/baobab": "^2.4.0",
     "broccoli-asset-rev": "^2.4.2",
+    "download-git-repo": "^1.0.1",
     "ember-ajax": "^2.0.1",
     "ember-cli": "2.7.0",
     "ember-cli-app-version": "^1.0.0",
