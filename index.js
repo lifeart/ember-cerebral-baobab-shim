@@ -3,7 +3,7 @@ const path = require('path');
 const mergeTrees = require('broccoli-merge-trees');
 // const replace = require('broccoli-replace');
 module.exports = {
-  name: 'function-tree',
+  name: '@cerebral/baobab',
   _findHost: function () {
     var current = this;
     var app;
@@ -34,8 +34,4 @@ module.exports = {
 
     return this._super.treeForAddon.call(this, trees);
   }
-}
-
-module.exports = {
-  name: '@cerebral/baobab',
 };
