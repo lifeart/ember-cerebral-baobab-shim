@@ -19,6 +19,13 @@ module.exports = {
   isDevelopingAddon() {
     return true;
   },
+  included(app, parentAddon) {
+    var target = (parentAddon || app);
+    target.options = target.options || {};
+    target.options.babel = target.options.babel || { includePolyfill: true };
+    this._super.included.apply(this, arguments);
+    target.import('vendor/shims/cerebral-baobab.js');
+  },
   treeForAddon (tree) {
     const app = this._findHost();
     const reduxPath = path.dirname(path.resolve('./cerebral_src/packages/node_modules/@cerebral/baobab/src/index.js'));
