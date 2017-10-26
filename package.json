@@ -20,6 +20,7 @@
   "devDependencies": {
     "@cerebral/baobab": "^2.4.0",
     "broccoli-asset-rev": "^2.4.2",
+    "broccoli-replace": "^0.12.0",
     "download-git-repo": "^1.0.1",
     "ember-ajax": "^2.0.1",
     "ember-cli": "2.7.0",

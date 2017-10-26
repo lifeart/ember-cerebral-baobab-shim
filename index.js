@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 const mergeTrees = require('broccoli-merge-trees');
-// const replace = require('broccoli-replace');
+const replace = require('broccoli-replace');
 module.exports = {
   name: '@cerebral/baobab',
   _findHost: function () {
@@ -27,6 +27,16 @@ module.exports = {
     if (!tree) {
       return this._super.treeForAddon.call(this, reduxTree);
     }
+
+    reduxTree = replace(reduxTree, {
+      files: '**/*.js',
+      patterns: [
+        {
+          match: /cerebral\/lib/g,
+          replacement: `cerebral`
+        }
+      ]
+    });
 
     const trees = mergeTrees([reduxTree, tree], {
       overwrite: true
