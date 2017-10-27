@@ -3,6 +3,8 @@ module.exports = {
   desctipion: '@cerebral/baobab shim for Ember.js',
   afterInstall: function () {
     return this.addPackagesToProject([
+      this.addPackagesToProject([
+      {name: 'broccoli-replace', target: '*'},
       {name: '@cerebral/baobab', target: '^2.4.0'},
       {name: 'download-git-repo', target: '^1.0.1'}
     ]).then(()=>{
