@@ -28,34 +28,29 @@ module.exports = {
   },
   treeForAddon (tree) {
     const app = this._findHost();
+    let basePath = require.resolve('@cerebral/baobab');
+    const reduxPath = path.dirname(basePath);
 
-    const reduxPath = path.dirname(require.resolve('@cerebral/baobab'));
+    let reduxTree = this.treeGenerator(reduxPath+'/lib');
 
-    let reduxTree = this.treeGenerator(reduxPath);
+    reduxTree = replace(reduxTree, {
+      files: ['*.js'],
+      patterns: [
+        {
+          match: /require\(\'cerebral\/lib\/BaseModel\'\)/gi,
+          replacement: `require('cerebral/BaseModel').default`
+        },
+        {
+          match: /require\(\'baobab\'\)/gi,
+          replacement: `require('baobab').default`
+        }
+      ]
+    });
+
 
     if (!tree) {
       return this._super.treeForAddon.call(this, reduxTree);
     }
-
-    reduxTree = replace(reduxTree, {
-      files: '**/*.js',
-      patterns: [
-        {
-          match: /cerebral\/lib/g,
-          replacement: `cerebral`
-        }
-      ]
-    });
-
-    reduxTree = replace(reduxTree, {
-      files: '**/*.js',
-      patterns: [
-        {
-          match: /cerebral\/es/g,
-          replacement: `cerebral`
-        }
-      ]
-    });
 
     const trees = mergeTrees([reduxTree, tree], {
       overwrite: true
