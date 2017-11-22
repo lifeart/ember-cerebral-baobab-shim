@@ -28,7 +28,8 @@ module.exports = {
   },
   treeForAddon (tree) {
     const app = this._findHost();
-    const reduxPath = path.dirname(require.resolve('@cerebral/baobab/src/index.js'));
+
+    const reduxPath = path.dirname(require.resolve('@cerebral/baobab'));
 
     let reduxTree = this.treeGenerator(reduxPath);
 
@@ -41,6 +42,16 @@ module.exports = {
       patterns: [
         {
           match: /cerebral\/lib/g,
+          replacement: `cerebral`
+        }
+      ]
+    });
+
+    reduxTree = replace(reduxTree, {
+      files: '**/*.js',
+      patterns: [
+        {
+          match: /cerebral\/es/g,
           replacement: `cerebral`
         }
       ]
